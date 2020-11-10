@@ -23,7 +23,6 @@ class CommentsController extends Controller
 
     public function store(){
         $url = request()->session()->get('_previous')['url'];
-
         auth()->user()->comments()->create($this->validateRequest());
         return redirect($url);
     }
@@ -42,7 +41,10 @@ class CommentsController extends Controller
     }
 
     public function destroy(Comments $comment){
+        $url = request()->session()->get('_previous')['url'];
+        
         $comment->delete();
-        return redirect('/');
+        return redirect($url);
+
     }
 }

@@ -9,8 +9,10 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $article->title }}</h5>
                         <p class="card-text">{{ $article->text }}</p>
+                        @if(Auth::user() && Auth::user()->id == $article->user_id)
                         <a href="/article/{{ $article->id }}/edit" class="btn btn-outline-primary">Edit</a>
                         <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                        @endif
                     </div>
                 </div>
 
@@ -44,7 +46,11 @@
                             </div>
                         </form>
                         @foreach($comments as $comment)
-                        <p class="card-text" style="padding: 10px 0 10px 10px; background-color: #fafafa;border-radius: 5px;">{{ $comment->comment }}</p>
+                        <div style="margin: 5px 0;">
+                            <p class="card-text" style="padding: 10px; background-color: #fafafa;border-radius: 5px;">{{ $comment->comment }}
+                            
+                            </p>
+                        </div>
                         @endforeach    
                     </div>
                 </div>

@@ -4,7 +4,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 col-offset-md-2">
+                @if(Auth::user())
                 <a href="/article/create" class="btn btn-outline-primary float-right mb-1">Post</a>
+                @endif
             </div>
             <div class="col-md-8 col-offset-md-2">
                @foreach($posts as $post)
