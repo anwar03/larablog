@@ -40,7 +40,6 @@ class CommentsTest extends TestCase
         $data = $this->data();
 
         $response = $this->post('/comment', $data);
-        $response->assertRedirect('/');
 
         $comment = Comments::first();
 
@@ -84,12 +83,10 @@ class CommentsTest extends TestCase
         $comment = Comments::first();
 
         $this->assertCount(1, Comments::all());
-        $insert->assertRedirect('/');
 
         $delete = $this->delete($comment->path());
 
         $this->assertCount(0, Comments::all());
-        $delete->assertRedirect('/');
     }
 
     /** @test */
