@@ -22,8 +22,10 @@ class CommentsController extends Controller
     }
 
     public function store(){
+        $url = request()->session()->get('_previous')['url'];
+
         auth()->user()->comments()->create($this->validateRequest());
-        return redirect('/');
+        return redirect($url);
     }
 
     public function create(){

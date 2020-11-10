@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card" style="margin-bottom: 15px;">
 
                     <div class="card-body">
                         <h5 class="card-title">{{ $article->title }}</h5>
@@ -13,6 +13,42 @@
                         <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
                     </div>
                 </div>
+
+                  
+                <div class="card" style="margin-bottom: 14px;">
+                    <div class="card-body" id="comment-body">
+                        <h5 class="card-title">Comments</h5>
+                        <form method="POST" action="/comment">
+                            @csrf
+
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <textarea id="comment" type="text" class="form-control @error('comment') is-invalid @enderror" name="comment" value="{{ old('comment') }}" required autocomplete="comment" autofocus>
+                                    </textarea>
+                                    <input id="post_id" type="hidden" name="post_id" value="{{ $article->id }}" autocomplete="post_id" autofocus>
+
+                                    @error('comment')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary float-right" id="button">
+                                        Comment
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        @foreach($comments as $comment)
+                        <p class="card-text" style="padding: 10px 0 10px 10px; background-color: #fafafa;border-radius: 5px;">{{ $comment->comment }}</p>
+                        @endforeach    
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -41,3 +77,4 @@
         </form>
     </div>
 @endsection
+

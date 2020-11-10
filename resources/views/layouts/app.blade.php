@@ -78,6 +78,21 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+@stack('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#button').attr('disabled',true);
+            $("#comment").on('keyup',function(){
+                if ($(this).val() != '') {
+                    $('#button').attr('disabled',false);
+                } else {
+                    $('#button').attr('disabled',true); 
+                }
+            });
+        });
+    </script>
     </div>
 </body>
 </html>
