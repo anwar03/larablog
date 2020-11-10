@@ -23,6 +23,7 @@ Route::patch('/article/{article}', [ArticleController::class, 'update'])->name('
 Route::delete('/article/{article}', [ArticleController::class, 'destroy'])->name('article.delete');
 Route::post('/article', [ArticleController::class, 'store'])->name('article.store');
 
+
 Route::get('/', [HomeController::class, 'index'])->name('article.index');
 Route::get('/article/{article}', [HomeController::class, 'show'])->name('article.show');
 
