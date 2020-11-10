@@ -9,4 +9,13 @@ class Comments extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
+    public function path(){
+        return '/comment/' . $this->id;
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
