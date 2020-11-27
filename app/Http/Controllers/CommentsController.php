@@ -2,47 +2,56 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CommentResource;
 use Illuminate\Http\Request;
 use App\Models\Comments;
 
 
 class CommentsController extends Controller
 {
-    public function __construct()
+
+    public function index()
     {
-        $this->middleware('auth');
+        $comment = Comments::all();
+        return CommentResource::collection($comment);
     }
 
-    public function validateRequest()
-    {
-        return request()->validate([
-            'comment' => ['required'],
-            'post_id' => ['required',],
-        ]);
+    public function show(Comments $comment){
+        
+        return new CommentResource($comment);
     }
 
-    public function store(){
-        auth()->user()->comments()->create($this->validateRequest());
-        return redirect(request()->session()->get('_previous')['url']);
+    public function store(Request $request){
+        $comment = new Comments();
+        $comment->user_id = $request->user_id;
+        $comment->post_id = $request->post_id;
+        $comment->comment = $request->comment;
+
+        if($comment->save()){
+            return new CommentResource($comment);
+        }
     }
 
-    public function create(){
-        return view('comment.create');
+    // public function create(){
+    //     return view('article.create');
+    // }
+
+    public function update(Request $request, Comments $comment){
+        $comment->user_id = $request->user_id;
+        $comment->post_id = $request->post_id;
+        $comment->comment = $request->comment;
+
+        if($comment->save()){
+            return new CommentResource($comment);
+        }
     }
 
-    public function update(Comments $comment){
-        $comment->update($this->validateRequest());
-        return redirect('/');
-    }
-
-    public function edit(Comments $comment){
-        return view('comment.edit', compact('comment'));
-    }
+    // public function edit(Article $article){
+    //     return view('article.edit', compact('article'));
+    // }
 
     public function destroy(Comments $comment){
-        
         $comment->delete();
-        return redirect(request()->session()->get('_previous')['url']);
-
+        return new CommentResource($comment);
     }
 }
