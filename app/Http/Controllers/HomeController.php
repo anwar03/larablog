@@ -30,10 +30,8 @@ class HomeController extends Controller
         return view('article.index', compact('posts'));
     }
 
-    public function show(Article $article){
-        // var_dump($article->id);
-        $comments = Comments::where('post_id', $article->id)->get();;
-        // dd($comments);
-        return view('article.show', compact('article', 'comments'));
+    public function show($article){
+        
+        return view('article.show', compact('article'));
     }
 }

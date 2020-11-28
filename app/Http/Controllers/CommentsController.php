@@ -24,7 +24,7 @@ class CommentsController extends Controller
     public function store(Request $request){
         $comment = new Comments();
         $comment->user_id = $request->user_id;
-        $comment->post_id = $request->post_id;
+        $comment->article_id = $request->article_id;
         $comment->comment = $request->comment;
 
         if($comment->save()){
@@ -38,7 +38,7 @@ class CommentsController extends Controller
 
     public function update(Request $request, Comments $comment){
         $comment->user_id = $request->user_id;
-        $comment->post_id = $request->post_id;
+        $comment->article_id = $request->article_id;
         $comment->comment = $request->comment;
 
         if($comment->save()){

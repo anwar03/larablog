@@ -5,8 +5,6 @@
  */
 
 require('./bootstrap');
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 window.Vue = require('vue');
 
@@ -21,9 +19,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('articles', require('./components/Article.vue').default);
-Vue.component('comments', require('./components/Comments.vue').default);
+Vue.component('article', require('./components/Article.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -31,11 +27,7 @@ Vue.component('comments', require('./components/Comments.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
+
+const article = new Vue({
+    el: '#article',
 });
-
-
-// const articles = new Vue({
-//     el: '#articles',
-// });

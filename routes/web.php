@@ -33,9 +33,9 @@ use App\Http\Controllers\HomeController;
 
 
 // Route::get('/', [HomeController::class, 'index'])->name('article.index');
-// Route::get('/article/{article}', [HomeController::class, 'show'])->name('article.show');
+Route::get('/article/{article}', [HomeController::class, 'show'])->name('article.show');
 
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -16,7 +16,7 @@ class ArticleResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user_id' => $this->user->name,
+            'user_id' => $this->user,
             'title' => $this->title,
             'text' => $this->text,
             'created_at' => date('d M Y', strtotime($this->create_at)),
